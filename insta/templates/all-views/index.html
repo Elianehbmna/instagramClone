@@ -3,4 +3,20 @@
 {% block content %}
 {{block.super}}
 <h1> Welcome to Instagram</h1>
+{% for image in news %}
+
+  <div class="row">
+    <!-- displaying News articles -->
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <img src="{{image.article_image.url}}" class="img-responsive" alt="Image">
+      
+    </div>
+
+    <!--Display news Article images  -->
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <h2 class="text-center"> {{ image.caption }} </h2>
+    </div>
+
+  </div>
+  {% endfor %}
 {% endblock %}
