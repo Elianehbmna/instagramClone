@@ -30,10 +30,22 @@ class Image(models.Model):
     def update_caption(cls,id,caption):
         captions=cls.objects.filter(caption_id=id).update(image_caption = caption)
         return captions
+
     def total_likes(self):
          self.likes.count()
 
     def __str__(self):
         return self.imageName
+ 
+class Follow(models.Model):
+    following=models.ForeignKey(User,related_name='rel_from_set')
+    follower=models.ForeignKey(User,related_name='rel_to_set')
+
+    def __str__(self):
+        return '{} follows {}'.format(self.user_to)
+
+
+User.add_to_class('following',models.ManyToManyField('self',through=Follow,related_name='followers',symmetrical=False))
+    
 
     

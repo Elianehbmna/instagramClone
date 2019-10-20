@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
-from django.http  import HttpResponse
+from django.http  import HttpResponse,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .models import Image,User,Profile
+from .models import Image,User,Profile,Follow
 from .forms import ImageForm,UpdateProfile
 # Create your views here.
 @login_required(login_url='/accounts/login/')
@@ -35,15 +35,24 @@ def post(request):
 
 @login_required(login_url='/accounts/login/')
 def profile(request,profile_id):
-	'''
-	Method that fetches a users profile page
-	'''
-	user=User.objects.get(pk=profile_id)
-	images = Image.objects.filter(profile = profile_id)
-	title = User.objects.get(pk = profile_id).username
-	profile = Profile.objects.filter(user = profile_id)
-	
-	return render(request,"all-views/profile.html",{"images":images,"profile":profile,"title":title})
+    '''
+    Method that fetches a users profile page
+    '''
+    user=User.objects.get(pk=profile_id)
+    images = Image.objects.filter(profile = profile_id)
+    title = User.objects.get(pk = profile_id).username
+    profile = Profile.objects.filter(user = profile_id)
+
+    if Follow.objects.filter(follower=request.user,following=user).exists():
+        is_follow=True
+    else:
+        is_follow=False
+
+    followers=Follow.objects.filter(follower = user).count()
+    followings=Follow.objects.filter(following=user).count()
+
+
+    return render(request,"all-views/profile.html",{"images":images,"profile":profile,"title":title,"is_follow":is_follow,"followers":followers,"followings":followings})
 
 @login_required(login_url='/accounts/login/')
 def updateProfile(request):
@@ -68,5 +77,16 @@ def updateProfile(request):
 
     return render(request,'all-views/update.html',{"form":form})        
 
-    
+def follow(request,follower):
+
+    user=User.objects.get(id=follower)
+    is_follow=False
+    if Follow.objects.filter(following=request.user,follower=user).exists():
+        Follow.objects.filter(following=request.user,follower=user).delete()
+        is_follow=False
+    else:
+        Follow(following=request.user,follower=user).save()
+        is_follow=True
+
+    return HttpResponseRedirect(request.meta.get('HTTP_REFERER'))
                    

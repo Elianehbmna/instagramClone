@@ -13,17 +13,23 @@
        </div>
        <div class="col-md-8">
          <h2><strong>{{profile.user}}</strong></h2>
-         <h4><strong>{{images|length}}</strong> Post{{images|pluralize}} <strong>{{followers}}</strong> Follower{{followers|pluralize}} <strong>{{following}}</strong> Following</h4>
+         <h4><strong>{{images|length}}</strong> Post{{images|pluralize}} <strong>{{followers}}</strong> Follower{{followers|pluralize}} <strong>{{followings}}</strong> Following</h4>
          <h4>{{profile.bio}}</h4>
          {%if profile.user.id == user.id%}
-						<a class="btn btn-sm btn-primary" href="{% url 'updateProfile' %}"> Update Profile</a>
-				         {%endif%}
+            <a class="btn btn-sm btn-primary" href="{% url 'updateProfile' %}"> Update Profile</a>
+          {% else %}
+                    {% if is_follow %}
+                    <a href="{% url 'follow' profile.user.id %}" class="btn btn-danger">Unfollow</a>
+                    {% else %}
+                    <a href="{% url 'follow' profile.user.id %}" class="btn btn-success">Follow</a>
+          {%endif%}
+          {%endif%}
          
        </div>
      
      </div>
    
-   {%endfor%}
+   {% endfor %}
    {%else%}
  
        <div class="col-md-4">
