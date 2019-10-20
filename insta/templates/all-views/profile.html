@@ -48,6 +48,37 @@
      
    
  <hr>	
+
+ <div class="row">
+    <div class="container">
+    {%if images%}
+    {% for image in images%}
+    
+      <div class="col-md-4">				
+            
+           <div class="hovereffect thumbnail">
+              
+                    <img class="img-responsive" src="{{image.image.url}}" alt="">
+               
+            
+          </div>
+  
+      </div>
+    
+    {%endfor%}
+    {%else%}
+      {%if profile.user.id == user.id%}
+        
+          <h3 class="text-center">You havent posted any images yet. Get started by posting one <a href="{% url 'create' %}">here</a></h3>
+      {%else%}
+        <h3 class="text-center">This user hasn't created any posts yet.</h3>
+  
+      {%endif%}
+    {%endif%}
+  
+    </div>
+  </div>
+  
  </div>
  
  
