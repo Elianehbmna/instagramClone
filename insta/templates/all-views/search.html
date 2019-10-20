@@ -1,25 +1,39 @@
-{%extends 'all-news/base.html'%} 
-{% block content %}
+{%extends 'all-views/base.html'%}
+
+{% block content%}
+
+
 <div class="container">
-
-  <div class="row">
-    {% if articles%}
-      <h2>Found {{ articles|length }} of searched term {{message}}</h2>
-    {% else %}
-      <h2> Found 0 articles for the search term {{message}}</h2>
-    {% endif %}
-
-  </div>
-
-  <div class="row">
-
-  {% if articles %}
-    {% for article in articles %}
-      <div class="col-sm-6 col-md-3">
-          <h1>{{article.title}}</h1>
-      </div>
-    {% endfor %}
-  {% endif %}
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<div class="panel panel-default">
+		  <div class="panel-heading"><h3>Search results for the search term: <strong>{{message}}</strong></h3></div>
+		  {%if users%}
+		  	{% for user in users %}
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-2">
+						<a href="{% url 'profile' user.id %}"><img class="img-responsive img-circle" src="{{user.profilepic.url}}" alt="" style="width:50px; height:50px"></a>
+					</div>
+					<div class="col-md-10" style="padding-top:11px">
+						<a href="{% url 'profile' user.id %}">{{user.user.username}}</a>
+					</div>
+				</div>
+			</div>
+		{%endfor%}
+		{%else%}
+		<div class="panel-body">
+				<h3 class="text-center">No user with the name <strong>{{message}}</strong> exists!</h3>
+			</div>
+		{%endif%}
+	    
+	  
   </div>
 </div>
-{% endblock %}
+<div class="col-md-2"></div>
+
+</div>
+
+
+
+{%endblock%}
