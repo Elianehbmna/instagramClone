@@ -19,10 +19,10 @@
             <a class="btn btn-sm btn-primary" href="{% url 'updateProfile' %}"> Update Profile</a>
           {% else %}
                     {%if is_follow%}
-                    <a href="{% url 'follow' profile.user.id %}" class="btn btn-danger">Unfollow</a>
+                      <a href="{% url 'follow' profile.user.id %}" class="btn btn-danger">Unfollow</a>
                     {% else %}
-                    <a href="{% url 'follow' profile.user.id %}" class="btn btn-success">Follow</a>
-          {%endif%}
+                       <a href="{% url 'follow' profile.user.id %}" class="btn btn-success">Follow</a>
+                    {%endif%}
           {%endif%}
          
        </div>

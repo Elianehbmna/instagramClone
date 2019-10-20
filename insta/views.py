@@ -43,7 +43,7 @@ def profile(request,profile_id):
     title = User.objects.get(pk = profile_id).username
     profile = Profile.objects.filter(user = profile_id)
 
-    if Follow.objects.filter(follower=request.user,following=user).exists():
+    if Follow.objects.filter(following=request.user,follower=user).exists():
         is_follow=True
     else:
         is_follow=False
