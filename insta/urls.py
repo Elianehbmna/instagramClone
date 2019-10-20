@@ -7,7 +7,9 @@ urlpatterns=[
     url(r'^$',views.welcome,name = 'welcome'),
     url(r'^post/(\d+)',views.posts,name ='post'),  
     url(r'^new/post$', views.post, name='new-post'),
-     url(r'^profile/(\d+)',views.profile,name = 'profile')
+    url(r'^profile/(\d+)',views.profile,name = 'profile'),
+    url(r'^updateProfile',views.updateProfile,name = 'updateProfile'),
+
     
 ]
 if settings.DEBUG:

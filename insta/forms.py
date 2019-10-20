@@ -1,8 +1,13 @@
-from .models import Image
+from .models import Image,Profile
 from django import forms
 
 class ImageForm(forms.ModelForm):
     class Meta:
         model = Image
         exclude = ['profile', 'user_profile' , 'likes']
-        
+
+class UpdateProfile(forms.ModelForm):
+    class Meta:
+        model=Profile
+        fields=['bio','profilepic'] 
+        exclude=['user']     

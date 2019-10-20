@@ -17,7 +17,7 @@ class Image(models.Model):
     imageName = models.CharField(max_length =30)
     imageCaption= models.CharField(max_length =30)
     profile= models.ForeignKey(User)
-    user_profile= models.ForeignKey(Profile)
+    # user_profile= models.ForeignKey(Profile)
     likes=models.ManyToManyField(User,related_name = 'likes',blank=True)
 
     @classmethod
