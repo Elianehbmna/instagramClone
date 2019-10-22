@@ -128,7 +128,7 @@ def new_comment(request,image_id):
    
    
    
-    # print(profile)
+    
     if request.method=='POST':
         form=CommentForm(request.POST,request.FILES)
         if form.is_valid():
