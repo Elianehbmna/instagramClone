@@ -31,7 +31,7 @@ an application that is  identical to instagram
 * django-fontawesome==1.0
 * django-registration==2.4.1
 * django-tinymce==2.8.0
-*Pillow==6.2.0
+* Pillow==6.2.0
 *psycopg2==2.8.3
 *pytz==2019.3
 *PyYAML==5.1.2
