@@ -127,7 +127,7 @@ def new_comment(request,image_id):
     print(current_user)
    
    
-    # print(f' hey profile {profile}')
+   
     # print(profile)
     if request.method=='POST':
         form=CommentForm(request.POST,request.FILES)
