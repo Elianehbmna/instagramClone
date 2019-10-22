@@ -122,7 +122,7 @@ def likepost(request,image_id):
 @login_required(login_url='/accounts/login/')     
 def new_comment(request,image_id):
     current_user=request.user
-    # image=Image.objects.filter(id=image_id).first()
+    
     image = Image.get_image_by_id(image_id)
     print(current_user)
     # print(f' hey image id {image_id}')
