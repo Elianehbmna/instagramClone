@@ -18,7 +18,7 @@ an application that is  identical to instagram
   * sudo apt-get install python3.6-venv
   * python3.6 -m venv virtual
   * source virtual/bin/activate
-  * pip install -r requirements.txt
+ 
  
 
 ## Dependencies
@@ -33,9 +33,9 @@ an application that is  identical to instagram
 * django-tinymce==2.8.0
 * Pillow==6.2.0
 * psycopg2==2.8.3
-*pytz==2019.3
-*PyYAML==5.1.2
-*soupsieve==1.9.4
+* pytz==2019.3
+* PyYAML==5.1.2
+* soupsieve==1.9.4
 ## Technical Requirements
 This can be found in the specs.md file.
 ## User Stories
