@@ -1,25 +1,48 @@
 {%extends 'all-views/base.html'%}
+{% block content%}
+<h1 class="text-center">welcome to instagram clone</h1>
+<div class="container">
+	<div class="row">
+		{% if user.is_authenticated %}
+			{%if images%}
+				{% for image in images%}
+				<div class="col-md-4">
+				<div class="panel panel-default">
+					 <div class="panel-heading" style="background-color: white">
+					 	<div class="row">
+						<div class="col-md-2">
+							<a href="{% url 'profile' image.profile.id %}"><img class="img-responsive img-circle" src="{{image.user_profile.profilepic.url}}" alt="" style="width:35px; height:35px"></a>
+						</div>
+						<div class="col-md-10" style="padding-top:11px">
+							{{image.profile.username}}
+						</div>
+					</div>
 
- {% block content %}
+					 </div>
+				  <div class="panel-title">
+				       <div class="hovereffect" style="height: 245px">
+				    
+				        	<img class="img-responsive" src="{{image.image.url}}" alt="">
+				      	
+				      					      
+				   </div>
+				  
+				  </div>
+				   
+				  
+				</div>				
+							
+				  
 
- <div class="container">
+				</div>
+				{%endfor%}
+			{%else%}
+			<h3 class="text-center">Your timeline is empty because you havent followed any user. Discover new users <a href="{% url 'index' %}">here</a></h3>
+			{%endif%}
+		{%else%}
+		 <h3 class="text-center">Log in to view this content</h3>	
+		{%endif%}
+	</div>
+</div>
 
-   <div class="row">
-     <img src="{{posts.image.url}}"  class="img-responsive" alt="">
-   </div>
-
-   <div class="row">
-     <h1 class="text-center">{{posts.imageCaption}}</h1>
-   </div>
-
-   <div class="row">
-     {% autoescape on %}
-     {{posts.post| safe}}
-    {% endautoescape %}
-
-   </div>
-
-
- </div>
-
- {% endblock %}
+{%endblock%}

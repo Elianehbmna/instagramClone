@@ -1,0 +1,12 @@
+{% for comment in image.comment_set.all %}
+  <br><br><br><br><br><br><br><br><br><br>
+            <div class="col-md-4" style="margin-left: -200px;" >
+              
+      
+          <p> {{comment.comment}}</p>
+               
+    
+    {% empty %}
+    <p>No comments yet</p>
+  </div>   
+  {% endfor %}

@@ -2,21 +2,47 @@
 
 {% block content %}
 {{block.super}}
-<h1> Welcome to Instagram</h1>
-{% for image in news %}
 
-  <div class="row">
-    <!-- displaying News articles -->
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-    <img src="{{image.article_image.url}}" class="img-responsive" alt="Image">
-      
+
+    {% for image in images %}
+    <div class="card">
+        <div class="card-body">
+        <h3 style="margin-top: -10px; font-size: 15px; font-weight: bold" >
+            <img style="width:50px;height:50px;border-radius:118px;" src="{{image.user_profile.profilepic.url}}">  {{image.profile.username}}</a>
+        </h3>
+        <hr>
+        <img style="width:70%;height:auto;" class="img-responsive" src="{{image.image.url}}">
+    <div class="uk-card uk-card-default uk-card-body uk-width-3-2@m " style="margin-top: 3%">
+        <p>
+            {{image.imageCaption}}  
+        </p>
+
+               <div class="row">
+                <div class="col-md-1">
+					   	  <a class='info' href="{% url 'likePost' image.id %}">
+					   		{%if image.likes.id == user.id%}
+			      		 	<i class="glyphicon glyphicon-heart-empty" style="font-size:25px;" class="success"></i>
+			      		 	{%else%}
+			      		 	<i class="glyphicon glyphicon-heart" style="font-size:25px;" class="success"></i>
+			      		 	{%endif%}
+					   		
+
+                </a><span style="font-size:20px;">{{image.likes.count}}</span>
+              </div>
+              <div class="col-md-1">
+                  
+                  
+                      
+                  <a href="{% url 'comment' image.id %}" >
+                    <i class="glyphicon glyphicon-comment" style="font-size:25px;" class="success"></i> 
+                 </a>
+              </div>
+              </div>
     </div>
-
-    <!--Display news Article images  -->
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <h2 class="text-center"> {{ image.caption }} </h2>
     </div>
+    </div>
+    <br><br>
+    {% endfor %}
 
-  </div>
-  {% endfor %}
+
 {% endblock %}

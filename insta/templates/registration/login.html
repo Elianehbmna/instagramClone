@@ -1,41 +1,32 @@
-{%extends "registration/base.html"%}
-{% load bootstrap3 %}
-{% block content %}
-<div class="container">
-  <div class="row">
-    <!-- Empty div -->
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-      {% if form.errors %}
-        <p> Password or Username is incorrect </p>
-      {% endif %}
-      <div class="panel panel-default">
-
-        <div class="panel-heading">
-          <h3 class="text-center">Sign In</h3>
-        </div>
-        <div class="panel-body">
-
-          <form  action="/accounts/login/" method="post">
-            {% csrf_token %}
-            {% bootstrap_form form%}
-
-            <div class="form-group">
-              <input type="submit" class="btn btn-primary btn-sm" value="Login">
-            </div>
-
-            <input type="hidden" name="next" value="{{next}}">
-
-          </form>
-
-        </div>
-
-      </div>
-
-    </div>
-    <!-- empty div -->
-    <div class="col-md-4"></div>
-  </div>
+{%extends 'registration/base.html'%} 
+{%load bootstrap4 %} 
+{%block content%}
+<div class="container col d-flex justify-content-center" style="padding-top: 100px;">
+<div class="row">
+   <div class="col-md-9">
+       <img class="card-img-top" src="https://files.slack.com/files-pri/T077KKCG6-FP9LYH36X/insta6.png" alt="" style="height:auto;width:100%">
+   </div>
 </div>
-
-{% endblock %}
+   <div class="row">
+       <div class="col-md-6 col-lg-6 " style="padding-top: 60px; padding-left: 0px; margin-left: 0px;">
+           <div class="card" style="width: 18rem;">
+               <div class="card-header">
+                   <center>
+                     <h1 class="logo">  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png" alt="" style="width:135px"></h1>
+                       <p>Sign In to Instagram</p>
+                   </center>
+               </div>
+               <div class="card-body">
+                   <form action="" method="POST">
+                       {%csrf_token%}
+                       {%bootstrap_form form%}
+                       <button type="submit" class="btn btn-primary btn-block btn-lg">Sign in</button>
+                       Don't have an account?<a href="/accounts/register">Signup</a>
+                       <input type="hidden" name="next" value="{{next}}">
+                   </form>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+{%endblock%}

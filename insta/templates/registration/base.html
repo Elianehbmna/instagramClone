@@ -1,35 +1,37 @@
-{% load bootstrap3 %}
-{% load staticfiles %}
-<!DOCTYPE html>
+
+
+
+{%load bootstrap4 %} 
+{% load static %}
 <html>
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-  {%if title%}
-
-  <title>{{title}}</title>
-
-  {%endif%}
-
-  {% block styles %}
-    {% bootstrap_css %}
-  {% endblock %}
-
+   <meta charset="utf-8">
+   <meta name="mobile-web-app-capable" content="yes">
+   <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, viewport-fit=cover">
+   <title> Instagram </title>
+   <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png(377 kB)
+https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png
+" type="image/x-icon">
+   {%block styles%} {%bootstrap_css%}
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Lobster%7CPangolin" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+   <link rel="stylesheet" href="{%static 'css/ig.css'%}"> {% endblock %}
 </head>
-
 <body>
-        {% include "navbar.html" %}
-  {% block content %}  {%endblock%}
-
-
-  {% block scripts %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    {% bootstrap_javascript %}
-  {% endblock %}
-
+   {%block content%} {% endblock %} 
+   {% block scripts %}
+   <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+   {% bootstrap_javascript %} 
+   {% endblock %}
 </body>
-
 </html>
+
+
+
+
+
+
+

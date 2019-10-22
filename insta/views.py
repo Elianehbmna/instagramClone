@@ -1,20 +1,22 @@
 from django.shortcuts import render,redirect
 from django.http  import HttpResponse,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .models import Image,User,Profile,Follow
-from .forms import ImageForm,UpdateProfile
+from .models import Image,User,Profile,Follow,Comment
+from .forms import ImageForm,UpdateProfile,CommentForm
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def welcome(request):
-    return render(request, 'all-views/index.html')
+    current_user= request.user
+    all_images=Image.objects.all()
+    profile=Profile.objects.all()
+    return render(request, 'all-views/index.html',{"images":all_images})
 
 @login_required(login_url='/accounts/login/')
-def posts(request, post_id):
-    try:
-        post = Image.objects.get(id = post_id)
-    except DoesNotExist:
-        raise Http404()
-    return render(request,"all-views/post.html", {"posts":post})
+def posts(request):
+    follows=Follow.objects.filter(following=request.user.id)
+    images = Image.objects.filter(profile = request.user.followings.follower)
+    return render(request, 'all-views/post.html',{"images":images})
+
 
 @login_required(login_url='/accounts/login/')
 def post(request):
@@ -103,4 +105,40 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'all-views/search.html',{"message":message})
-                   
+        
+@login_required(login_url='/accounts/login/')
+def likepost(request,image_id):
+
+    images=Image.objects.get(pk=image_id)
+    is_liked=False
+    if images.likes.filter(id=request.user.id).exists():
+            images.likes.remove(request.user)
+            is_liked=False
+    else:
+        images.likes.add(request.user)
+        is_liked=True
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+@login_required(login_url='/accounts/login/')     
+def new_comment(request,image_id):
+    current_user=request.user
+    # image=Image.objects.filter(id=image_id).first()
+    image = Image.get_image_by_id(image_id)
+    print(current_user)
+    # print(f' hey image id {image_id}')
+    # profile=Profile.objects.get(user_id=current_user.id)
+    # print(f' hey profile {profile}')
+    # print(profile)
+    if request.method=='POST':
+        form=CommentForm(request.POST,request.FILES)
+        if form.is_valid():
+            comment=form.save(commit=False)
+            comment.postedby=current_user
+            comment.commentImage=image
+            comment.save()
+            return redirect('welcome')
+    else:
+        form=CommentForm()
+    
+    return render(request,'all-views/comment.html',{"form":form,"image":image})
+

@@ -1,0 +1,78 @@
+
+{% load bootstrap4 %} 
+{%load static%} 
+
+
+<!--comment form and comment display-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>comment</title>
+  {{form.media}}
+
+{% block styles %}
+ {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/basenews.css' %}"> 
+  {% endblock %}
+
+</head>
+
+<body>
+    {% block content %}
+<div class="container" style="background-color:#fff;">
+<br><br><br><br>
+     <div class="row" style="margin-left:160px">
+
+
+<div class="jumbotron">
+  <form  action="{%url 'comment' image.id%}" method="post" >
+    {%csrf_token%}
+<br><br><br><br>
+
+    <div class="col-md-11">
+    {% bootstrap_form form%}
+  </div>
+  
+  <div class="col-md-1">
+      <br>
+    <input id="id_myfield" type="submit" class="btn btn-success btn-lg" value="Post">
+  </div>
+</div>
+  </form>
+</div>
+<div class="card">
+<div class="panel panel-default" style="padding-top:-200px">
+{% for comment in image.comment_set.all %}
+
+          
+         
+            <p style="margin-left:800px;"> {{comment.comment}}</p>
+           
+    
+        
+          
+  
+  {% empty %}
+  <p>No comments yet</p>
+
+</div>   
+</div>
+{% endfor %}
+</div> 
+</div>
+
+  
+   {% block scripts %}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  {% bootstrap_javascript %} {% endblock %}
+
+
+     </div>
+
+
+
+
+{% endblock %}
+</body>

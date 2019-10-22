@@ -16,7 +16,10 @@
          <h4><strong>{{images|length}}</strong> Post{{images|pluralize}} <strong>{{followers}}</strong> Follower{{followers|pluralize}} <strong>{{followings}}</strong> Following</h4>
          <h4>{{profile.bio}}</h4>
          {%if profile.user.id == user.id%}
-            <a class="btn btn-sm btn-primary" href="{% url 'updateProfile' %}"> Update Profile</a>
+        
+            <a class="btn btn-default btn-lg" href="{% url 'updateProfile' %}">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Edit Profile
+              </a>
           {% else %}
                     {%if is_follow%}
                       <a href="{% url 'follow' profile.user.id %}" class="btn btn-danger">Unfollow</a>
@@ -75,7 +78,7 @@
     {%else%}
       {%if profile.user.id == user.id%}
         
-          <h3 class="text-center">You havent posted any images yet. Get started by posting one <a href="{% url 'create' %}">here</a></h3>
+          <h3 class="text-center">You havent posted any images yet. Get started by posting one here</a></h3>
       {%else%}
         <h3 class="text-center">This user hasn't created any posts yet.</h3>
   

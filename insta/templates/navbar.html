@@ -1,64 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="{% url 'welcome' %}">Instagram</a>
-    </div>
-    <div class="col-sm-4 col-md-4 navbar-right">
+{% load bootstrap3%} 
+{% block content %}
 
-        <form class="navbar-form" role="search" action="{% url 'search' %}"> 
-       
 
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search user" name="user">
-          <div class="input-group-btn">
-            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-          </div>
-        </div>
+<div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            
 
-      </form>
-    </div>
-    <div class="col-sm-6 col-md-6">
-        {% if user.is_authenticated %}
-        <ul>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
-                        <span class="caret"></span>
-                    </a>
-              <ul class="dropdown-menu" role="menu">
-                <li>
-                  <a href="{%url 'welcome'%}">Home</a>
-                </li>
-                <li>
-                    <a href="{%url 'profile' user.id %}">Profile</a>
-                  </li>
-                <li>
-                  <a href="{%url 'new-post'%}">Create Article</a>
-                </li>
-                <li>
-                  <a href="/accounts/password/change">Change Password</a>
-                </li>
-                <li>
-                  <a href="/logout">Logout</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        {% else %}
-        <li>
-          <a class='btn btn-default' href="/accounts/login">Login</a>
-        </li>
+        
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                    aria-expanded="false">
+                </button>
+            
+                
+                <div class="panel-heading">
+                    <div class="col-md-4">
+                        <a href="{%url 'welcome'%}">
+                            <img id="panelpic" src="../../static/images/instanav.png" alt="instagram logo on nav-bar " style="width:53px; height:30px;margin-top:5px;margin-left:26px;border-right:1px solid;padding-right: 23px; ">
+                        </a>
+                    </div>
+                </div>
+            
+            
+                <div class="homenav">
+                    <div class="col-md-4">
+                        <a href="{%url 'welcome'%}">
+                            <img src="../../static/images/instalogo.svg" alt="Instagram name on nav-bar " style="width:120px; height:30px; margin-left: 50px;">
+                        </a>
+                    </div>
+                </div>
+            
+            
+               
+            </div>
+               
+                  <div class="center">
+                      <div class="col-md-6">
+                          <form class="navbar-form" role="search" action="{% url 'search' %}" style="margin-left: 250px;"> 
+         
+  
+                              <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search" name="user">
+                                
+                              </div>
+                      
+                            </form>
+                    </div>
+                  </div>
+               
 
-        {% endif %}
-      </div>
-  </div>
-</nav>
-</body>
-</html>
+
+
+
+            <div class="container">
+
+                <!--COLLAPSE Instagram Left images on nav bar -->
+                
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                
+                      <li>
+                        <a href="{%  url 'welcome'%}">
+                            <i class="glyphicon glyphicon-home" style="font-size:26px;padding-top: 14%;"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/logout">
+                            <i class="glyphicon glyphicon-log-out" style="font-size:26px;padding-top: 14%;"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'new-post' %}">
+                            <i class="glyphicon glyphicon-camera" style="font-size:26px;padding-top: 14%;"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{%url 'profile' user.id %}">
+                            <i class="glyphicon glyphicon-user" style="font-size:26px;padding-top: 14%;"></i>
+                        </a>
+                    </li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+    </nav>
+
+
+
+
+   
+{% endblock %}
