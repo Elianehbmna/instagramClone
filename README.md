@@ -23,7 +23,7 @@ an application that is  identical to instagram
 
 ## Dependencies
 * backports.functools-lru-cache==1.5
-*beautifulsoup4==4.8.1
+* beautifulsoup4==4.8.1
 *confusable-homoglyphs==3.2.0
 *Django==1.11
 *django-bootstrap3==11.1.0
