@@ -126,7 +126,7 @@ def new_comment(request,image_id):
     image = Image.get_image_by_id(image_id)
     print(current_user)
    
-    # profile=Profile.objects.get(user_id=current_user.id)
+   
     # print(f' hey profile {profile}')
     # print(profile)
     if request.method=='POST':
