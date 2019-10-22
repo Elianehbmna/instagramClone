@@ -125,10 +125,6 @@ def new_comment(request,image_id):
     
     image = Image.get_image_by_id(image_id)
     print(current_user)
-   
-   
-   
-    
     if request.method=='POST':
         form=CommentForm(request.POST,request.FILES)
         if form.is_valid():
