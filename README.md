@@ -27,7 +27,7 @@ an application that is  identical to instagram
 * confusable-homoglyphs==3.2.0
 * Django==1.11
 * django-bootstrap3==11.1.0
-*django-bootstrap4==1.0.1
+* django-bootstrap4==1.0.1
 *django-fontawesome==1.0
 *django-registration==2.4.1
 *django-tinymce==2.8.0
